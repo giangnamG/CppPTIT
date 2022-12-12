@@ -2,22 +2,23 @@
 using namespace std;
 
 struct SinhVien{
-    string name,Class,birthday;
+    char name[30];
+    string date,lop;
     float gpa;
 };
-void nhapThongTinSV(struct SinhVien &a){
-    getline(cin,a.name);
-    getline(cin,a.Class);
-    getline(cin,a.birthday);
+void nhapThongTinSV(SinhVien &a){
+    cin.getline(a.name,30);
+    cin >> a.lop;
+    cin >> a.date;
     cin >> a.gpa;
 }
-void inThongTinSV(struct SinhVien a){
-    if(a.birthday[1]=='/')
-        a.birthday.insert(0,"0");
-    if(a.birthday[4]=='/')
-        a.birthday.insert(3,"0");
-    cout <<"N20DCCN001 "<< a.name<<" "<<a.Class<<" "<<a.birthday<<" ";
-    cout << fixed << setprecision(2)<<a.gpa<<endl;
+void inThongTinSV(SinhVien a){
+    cout << "N20DCCN001\t";
+    cout << a.name<<"\t"<<a.lop<<"\t";
+    if(a.date[1]=='/') a.date.insert(0,"0");
+    if(a.date[4]=='/') a.date.insert(3,"0");
+    cout << a.date<<"\t";
+    cout << fixed << setprecision(2)<<a.gpa;
 }
 int main(){
     struct SinhVien a;
