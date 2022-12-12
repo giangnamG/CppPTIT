@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-int getSum(int a[],int l,int r){
+intgetSum(int a[],int l,int r){
 	int sum = 0;
 	for(int i=l-1;i<r;i++)
 		sum += a[i];
