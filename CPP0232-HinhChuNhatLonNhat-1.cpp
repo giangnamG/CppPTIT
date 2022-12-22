@@ -1,59 +1,50 @@
-<<<<<<< HEAD
-#include <bits/stdc++>
-=======
-#include<bits/stdc++.h>
->>>>>>> 52f3d6486fbfa71be705c51dbb0a19bb808490c5
+#include <bits/stdc++.h> 
 using namespace std;
+typedef long long ll;
 
-void process(){
-    int n,m;
-    cin >> n >> m;
-    int a[100][100];
-<<<<<<< HEAD
-    for(int i=1;i<=n;i++){
-        for(int j=1;j<=m;j++)
-            cin >> a[i][j];
-    }
-    for(int j=1;j<=m;j++)
-        a[0][j]=0;
-    int areaMax = -1;
-    int areaCurr = 0;
-    bool col[100] = {0};
-    int h[1000]={0};
-    for(int i=1;i<n;i++){
-        int length_row
-        for(int j=0;j<m;j++){
-            if(a[i][j]==1){
-                h[j] = h[j-1]+1;
-            }else
-                h[j] = 0;
-            
-
-        }
-    }
-=======
-    for(int i=0;i<n;i++)
-        for(int j=0;j<m;j++)
-            cin >> a[i][j];
-    vector <string> col;
-    for(int i=0;i<m;i++){
-        string s="";
-        for(int j=0;j<n;j++){
-            s+=a[j][i]+'0';
-        }
-        col.push_back(s);
-    }
-    int count_row_acp = 0;
-    for(int i=0;i<col.size();i++)
-        if(col[i].find("0")>1000)
-            count_row_acp++;
-    cout << count_row_acp*n<<"\n";
->>>>>>> 52f3d6486fbfa71be705c51dbb0a19bb808490c5
-}
-
-int main(){
-    int t;
-    cin >> t;
-    while(t--)
-        process();
+int const MOD = 1e9 + 7; 
+int R, C; 
+int mat[20][20]; 
+int maxArea(int mat[][20], int R, int C){ 
+    int hist[R + 1][C + 1]; 
+    for (int i = 0; i < C; i++) { 
+        hist[0][i] = mat[0][i];
+        for (int j = 1; j < R; j++) 
+            hist[j][i] = (mat[j][i] == 0) ? 0 : hist[j - 1][i] + 1;
+    } 
+    for (int i = 0; i < R; i++) {
+        int count[R + 1] = { 0 }; 
+        for (int j = 0; j < C; j++) 
+            count[hist[i][j]]++; 
+            int col_no = 0; 
+            for (int j = R; j >= 0; j--) { 
+                if (count[j] > 0) { 
+                    for (int k = 0; k < count[j]; k++) { 
+                        hist[i][col_no] = j; col_no++; 
+                    } 
+                } 
+            } 
+    } 
+    int curr_area, max_area = 0;
+    for (int i = 0; i < R; i++) {
+        for (int j = 0; j < C; j++) {
+            curr_area = (j + 1) * hist[i][j]; 
+            if (curr_area > max_area) max_area = curr_area;
+            } 
+    } 
+    return max_area;
+} 
+int main(){ 
+    int t; 
+    cin >> t; 
+    while(t--){ 
+        cin >> R >> C;
+        for (int i = 0; i < R; i++) {
+            for (int j = 0; j < C; j++) { 
+                cin >> mat[i][j]; 
+            } 
+        } 
+    cout << maxArea(mat, R, C) << endl;
+    } 
+    return 0; 
 }
